@@ -14,21 +14,17 @@ if [ ! -e "${EMARK_CONF}" ]; then
   tee -a >${EMARK_CONF} <<EOF
 
 server=1
+
 rpcuser=${EMARK_RPCUSER:-emark}
 rpcpassword=${EMARK_RPCPASSWORD}
 
 rpcclienttimeout=${EMARK_RPCCLIENTTIMEOUT:-30}
-rpcallowip=${EMARK_RPCALLOWIP:-::/0}
-rpcport=${EMARK_RPCPORT:-4444}
-rpcbind=${EMARK_RPCBIND:-127.0.0.1}
-
-
 EOF
 echo "Created new configuration at ${EMARK_CONF}"
 fi
 
 if [ $# -eq 0 ]; then
-  /emark/eMark/src/eMarkd
+  /emark/eMark/src/eMarkd -rpcbind=:4444 -rpcallowip=*
 else
   exec "$@"
 fi

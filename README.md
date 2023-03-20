@@ -16,12 +16,12 @@ Example docker-compose.yml
             restart: unless-stopped
             user: 1000:1000
             ports:
-                - '127.0.0.1:4444:4444'
                 - '4555:4555'
+                - '127.0.0.1:4444:4444'
             volumes:
                 - 'emark:/emark/.eMark-volume-2'
     volumes:
-      emark:
+       emark:
 
 **RPC Access**
 

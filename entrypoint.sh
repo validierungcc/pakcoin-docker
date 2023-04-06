@@ -19,7 +19,7 @@ rpcuser=${EMARK_RPCUSER:-emark}
 rpcpassword=${EMARK_RPCPASSWORD}
 
 rpcclienttimeout=${EMARK_RPCCLIENTTIMEOUT:-30}
-
+printtoconsole=1
 addnode=199.247.2.54
 addnode=65.109.141.173
 EOF

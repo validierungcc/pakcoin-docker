@@ -12,7 +12,7 @@ Example docker-compose.yml
     services:
         emark:
             container_name: emark
-            image: validierungcc/emark
+            image: vfvalidierung/deutsche_emark
             restart: unless-stopped
             user: 1000:1000
             ports:

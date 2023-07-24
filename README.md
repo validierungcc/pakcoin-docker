@@ -12,9 +12,8 @@ Example docker-compose.yml
     services:
         emark:
             container_name: emark
-            image: vfvalidierung/deutsche_emark
+            image: vfvalidierung/deutsche_emark:latest
             restart: unless-stopped
-            user: 1000:1000
             ports:
                 - '4555:4555'
                 - '127.0.0.1:4444:4444'
@@ -25,4 +24,4 @@ Example docker-compose.yml
 
 **RPC Access**
 
-    curl --user '<user>:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:4444
+    curl --user 'emarkrpc:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:4444

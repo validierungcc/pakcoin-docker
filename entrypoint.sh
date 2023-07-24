@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -meuo pipefail
 
 EMARK_DIR=/emark/.eMark-volume-2/

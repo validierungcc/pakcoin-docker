@@ -1,5 +1,5 @@
-FROM alpine:3.13
-RUN apk add --no-cache git make g++ boost-dev openssl-dev db-dev miniupnpc-dev zlib-dev bash
+FROM alpine:3.18.2
+RUN apk add --no-cache git make g++ boost-dev openssl-dev db-dev miniupnpc-dev zlib-dev curl bash
 
 RUN addgroup --gid 1000 emark
 RUN adduser \

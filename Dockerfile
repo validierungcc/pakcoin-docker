@@ -8,7 +8,7 @@ USER emark
 
 RUN git clone https://github.com/emarkproject/eMark.git /emark/eMark
 WORKDIR /emark/eMark
-RUN git checkout master
+RUN git checkout tags/2.1.0
 WORKDIR /emark/eMark/src
 RUN make -f makefile.unix
 

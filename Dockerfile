@@ -27,3 +27,5 @@ VOLUME /emark/.eMark-volume-2
 ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 4555/tcp
 EXPOSE 4444/tcp
+EXPOSE 14555/tcp
+EXPOSE 14444/tcp

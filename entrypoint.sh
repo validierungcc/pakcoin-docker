@@ -14,7 +14,6 @@ if [ ! -e "${EMARK_CONF}" ]; then
 server=1
 rpcuser=${EMARK_RPCUSER:-emarkrpc}
 rpcpassword=${EMARK_RPCPASSWORD}
-rpcclienttimeout=${EMARK_RPCCLIENTTIMEOUT:-30}
 EOF
 echo "Created new configuration at ${EMARK_CONF}"
 fi

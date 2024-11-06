@@ -6,8 +6,8 @@ ENV LD_LIBRARY_PATH="/usr/local/lib"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git make g++ wget autoconf automake libtool \
-    libevent-dev pkg-config libboost-all-dev \
-    libssl-dev ca-certificates bsdmainutils && \
+    libevent-dev pkg-config libminiupnpc-dev libboost-all-dev \
+    libssl1.0-dev ca-certificates bsdmainutils && \
     addgroup --gid 1000 pakcoin && \
     adduser --disabled-password --gecos "" --home /pakcoin --ingroup pakcoin --uid 1000 pakcoin && \
     mkdir -p /pakcoin/.pakcoin && \
@@ -30,9 +30,8 @@ RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz && \
 RUN git clone https://github.com/Pakcoin-project/pakcoin.git /pakcoin/pakcoin && \
     cd /pakcoin/pakcoin && \
     git checkout tags/v0.16.1 && \
-    ./autogen.sh && \
-    ./configure --without-gui --with-bdb=$BDB_PREFIX && \
-    make -j$(nproc)
+    cd /pakcoin/pakcoin/src && \
+    make -f makefile.unix
 
 RUN mkdir -p /output && \
     cp /usr/local/lib/libdb_cxx-4.8.so /output/ && \
@@ -43,7 +42,7 @@ ENV LD_LIBRARY_PATH="/usr/local/lib"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    libevent-dev libboost-all-dev ca-certificates && \
+    libevent-dev libboost-all-dev libminiupnpc-dev libssl1.0-dev ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /output/libdb_cxx-4.8.so /usr/local/lib/

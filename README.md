@@ -1,6 +1,6 @@
 **BolivarCoin**
 
-https://github.com/validierungcc/BolivarCoin-docker
+https://github.com/validierungcc/bolivarcoin-docker
 
 https://github.com/BOLI-Project/BolivarCoin
 

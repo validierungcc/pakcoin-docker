@@ -19,7 +19,7 @@ echo "Created new configuration at ${BOLIVAR_CONF}"
 fi
 
 if [ $# -eq 0 ]; then
-  /bolivar/BolivarCoin/src/bolivarcoind -rpcbind=:4444 -rpcallowip=* -printtoconsole=1
+  /bolivar/BolivarCoin/src/bolivarcoind -rpcbind=:3563 -rpcallowip=* -printtoconsole=1
 else
   exec "$@"
 fi

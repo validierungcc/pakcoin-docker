@@ -9,8 +9,9 @@ USER bolivar
 RUN git clone https://github.com/BOLI-Project/BolivarCoin.git /bolivar/BolivarCoin
 WORKDIR /bolivar/BolivarCoin
 RUN git checkout tags/v2.0.0.2
-WORKDIR /bolivar/BolivarCoin/src
-RUN make -f makefile.unix
+RUN ./autogen.sh
+RUN ./configure --without-gui --with-incompatible-bdb
+RUN make
 
 FROM alpine:3.20.3
 
@@ -27,10 +28,7 @@ VOLUME /bolivar/.Bolivarcoin
 ENTRYPOINT ["/entrypoint.sh"]
 
 # P2P
-EXPOSE 4555/tcp
+EXPOSE 3893/tcp
 # RPC
-EXPOSE 4444/tcp
-# Testnet P2P
-EXPOSE 14555/tcp
-# Testnet RPC
-EXPOSE 14444/tcp
+EXPOSE 3563/tcp
+

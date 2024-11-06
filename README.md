@@ -9,8 +9,8 @@ minimal example compose.yaml
 
      ---
     services:
-        bolivar:
-            container_name: bolivar
+        bolivarcoin:
+            container_name: bolivarcoin
             image: vfvalidierung/bolivarcoin:latest
             restart: unless-stopped
             ports:

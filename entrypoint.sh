@@ -2,7 +2,7 @@
 set -meuo pipefail
 
 BOLIVAR_DIR=/bolivar/.Bolivarcoin/
-BOLIVAR_CONF=/bolivar/.Bolivarcoin/eMark.conf
+BOLIVAR_CONF=/bolivar/.Bolivarcoin/Bolivarcoin.conf
 
 if [ -z "${BOLIVAR_RPCPASSWORD:-}" ]; then
   # Provide a random password.

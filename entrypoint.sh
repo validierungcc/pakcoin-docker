@@ -1,25 +1,25 @@
 #!/bin/bash
 set -meuo pipefail
 
-EMARK_DIR=/emark/.eMark-volume-2/
-EMARK_CONF=/emark/.eMark-volume-2/eMark.conf
+BOLIVAR_DIR=/bolivar/.Bolivarcoin/
+BOLIVAR_CONF=/bolivar/.Bolivarcoin/eMark.conf
 
-if [ -z "${EMARK_RPCPASSWORD:-}" ]; then
+if [ -z "${BOLIVAR_RPCPASSWORD:-}" ]; then
   # Provide a random password.
-  EMARK_RPCPASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 ; echo '')
+  BOLIVAR_RPCPASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 ; echo '')
 fi
 
-if [ ! -e "${EMARK_CONF}" ]; then
-  tee -a >${EMARK_CONF} <<EOF
+if [ ! -e "${BOLIVAR_CONF}" ]; then
+  tee -a >${BOLIVAR_CONF} <<EOF
 server=1
-rpcuser=${EMARK_RPCUSER:-emarkrpc}
-rpcpassword=${EMARK_RPCPASSWORD}
+rpcuser=${BOLIVAR_RPCUSER:-bolivarrpc}
+rpcpassword=${BOLIVAR_RPCPASSWORD}
 EOF
-echo "Created new configuration at ${EMARK_CONF}"
+echo "Created new configuration at ${BOLIVAR_CONF}"
 fi
 
 if [ $# -eq 0 ]; then
-  /emark/eMark/src/eMarkd -rpcbind=:4444 -rpcallowip=* -printtoconsole=1
+  /bolivar/BolivarCoin/src/bolivarcoind -rpcbind=:4444 -rpcallowip=* -printtoconsole=1
 else
   exec "$@"
 fi

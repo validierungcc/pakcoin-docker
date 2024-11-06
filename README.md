@@ -1,27 +1,26 @@
-**Deutsche eMark**
+**BolivarCoin**
 
-https://github.com/validierungcc/eMark-docker
+https://github.com/validierungcc/BolivarCoin-docker
 
-https://deutsche-emark.org/
+https://github.com/BOLI-Project/BolivarCoin
 
 
 minimal example docker-compose.yml
 
      ---
-    version: '3.9'
     services:
-        emark:
-            container_name: emark
-            image: vfvalidierung/deutsche_emark:latest
+        bolivar:
+            container_name: bolivar
+            image: vfvalidierung/bolivarcoin:latest
             restart: unless-stopped
             ports:
                 - '4555:4555'
                 - '127.0.0.1:4444:4444'
             volumes:
-                - 'emark_data:/emark/.eMark-volume-2'
+                - 'bolivarcoin_data:/bolivar/.Bolivarcoin'
     volumes:
-       emark_data:
+       bolivarcoin_data:
 
 **RPC Access**
 
-    curl --user 'emarkrpc:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:4444
+    curl --user 'bolivarrpc:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:4444

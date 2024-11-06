@@ -1,26 +1,26 @@
-**BolivarCoin**
+**PakCoin**
 
-https://github.com/validierungcc/bolivarcoin-docker
+https://github.com/validierungcc/pakcoin-docker
 
-https://github.com/BOLI-Project/BolivarCoin
+https://github.com/Pakcoin-project/pakcoin
 
 
 minimal example compose.yaml
 
      ---
     services:
-        bolivarcoin:
-            container_name: bolivarcoin
-            image: vfvalidierung/bolivarcoin:latest
+        pakcoin:
+            container_name: pakcoin
+            image: vfvalidierung/pakcoin:latest
             restart: unless-stopped
             ports:
-                - '3893:3893'
-                - '127.0.0.1:3563:3563'
+                - '7867:7867'
+                - '127.0.0.1:7866:7866'
             volumes:
-                - 'bolivarcoin_data:/bolivar/.Bolivarcoin'
+                - 'pakcoin_data:/pakcoin/.pakcoin'
     volumes:
-       bolivarcoin_data:
+       pakcoin_data:
 
 **RPC Access**
 
-    curl --user 'bolivarrpc:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:3563
+    curl --user 'pakcoinrpc:<password>' --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getinfo","params":[]}' -H "Content-Type: application/json" http://127.0.0.1:7866

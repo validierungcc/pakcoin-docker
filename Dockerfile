@@ -8,13 +8,13 @@ RUN apt-get update && \
     git make g++ wget autoconf automake libtool \
     libevent-dev pkg-config libboost-all-dev \
     libssl-dev ca-certificates bsdmainutils && \
-    addgroup --gid 1000 bolivar && \
-    adduser --disabled-password --gecos "" --home /bolivar --ingroup bolivar --uid 1000 bolivar && \
-    mkdir -p /bolivar/.Bolivarcoin && \
-    chown -R bolivar:bolivar /bolivar/.Bolivarcoin && \
+    addgroup --gid 1000 pakcoin && \
+    adduser --disabled-password --gecos "" --home /pakcoin --ingroup pakcoin --uid 1000 pakcoin && \
+    mkdir -p /pakcoin/.pakcoin && \
+    chown -R pakcoin:pakcoin /pakcoin/.pakcoin && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /bolivar
+WORKDIR /pakcoin
 RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz && \
     tar -xzvf db-4.8.30.NC.tar.gz && \
     cd db-4.8.30.NC/build_unix && \
@@ -27,16 +27,16 @@ RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz && \
     rm -rf db-4.8.30.NC db-4.8.30.NC.tar.gz
 
 
-RUN git clone https://github.com/BOLI-Project/BolivarCoin.git /bolivar/BolivarCoin && \
-    cd /bolivar/BolivarCoin && \
-    git checkout tags/v2.0.0.2 && \
+RUN git clone https://github.com/Pakcoin-project/pakcoin.git /pakcoin/pakcoin && \
+    cd /pakcoin/pakcoin && \
+    git checkout tags/v0.16.1 && \
     ./autogen.sh && \
     ./configure --without-gui --with-bdb=$BDB_PREFIX && \
     make -j$(nproc)
 
 RUN mkdir -p /output && \
     cp /usr/local/lib/libdb_cxx-4.8.so /output/ && \
-    cp /bolivar/BolivarCoin/src/bolivarcoind /output/
+    cp /pakcoin/pakcoin/src/pakcoind /output/
 
 FROM ubuntu:18.04
 ENV LD_LIBRARY_PATH="/usr/local/lib"
@@ -47,20 +47,20 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /output/libdb_cxx-4.8.so /usr/local/lib/
-COPY --from=builder /output/bolivarcoind /usr/local/bin/
+COPY --from=builder /output/pakcoind /usr/local/bin/
 
-RUN addgroup --gid 1000 bolivar && \
-    adduser --disabled-password --gecos "" --home /bolivar --ingroup bolivar --uid 1000 bolivar && \
-    mkdir -p /bolivar/.Bolivarcoin && \
-    chown -R bolivar:bolivar /bolivar/.Bolivarcoin
-USER bolivar
-VOLUME /bolivar/.Bolivarcoin
+RUN addgroup --gid 1000 pakcoin && \
+    adduser --disabled-password --gecos "" --home /pakcoin --ingroup pakcoin --uid 1000 pakcoin && \
+    mkdir -p /pakcoin/.pakcoin && \
+    chown -R pakcoin:pakcoin /pakcoin/.pakcoin
+USER pakcoin
+VOLUME /pakcoin/.pakcoin
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 
 
 # P2P
-EXPOSE 3893/tcp
+EXPOSE 7867/tcp
 # RPC
-EXPOSE 3563/tcp
+EXPOSE 7866/tcp

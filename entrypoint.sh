@@ -14,6 +14,16 @@ if [ ! -e "${PAKCOIN_CONF}" ]; then
 server=1
 rpcuser=${PAKCOIN_RPCUSER:-pakcoinrpc}
 rpcpassword=${PAKCOIN_RPCPASSWORD}
+addnode=159.242.234.196
+addnode=161.97.124.118
+addnode=161.97.137.67
+addnode=185.68.67.39
+addnode=217.254.36.8
+addnode=27.138.155.95
+addnode=38.242.235.208
+addnode=42.147.99.239
+addnode=93.195.92.5
+addnode=93.207.238.109
 EOF
 echo "Created new configuration at ${PAKCOIN_CONF}"
 fi
